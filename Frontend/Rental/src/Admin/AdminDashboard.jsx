@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 
 function AdminDashboard() {
@@ -16,11 +17,11 @@ function AdminDashboard() {
           </div>
 
           <nav className="nav">
-            <a href="#">Home</a>
-            <a href="#">Log in</a>
-            <a href="#" className="btn-primary">
+            <Link to="#">Home</Link>
+            <Link to="/login">Log in</Link>
+            <Link to="#" className="btn-primary">
               Apply to stay <span>→</span>
-            </a>
+            </Link>
           </nav>
         </div>
       </header>

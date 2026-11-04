@@ -6,10 +6,11 @@ import { ShieldCheck } from 'lucide-react';
 function Register() {
   const [isOpen, setIsOpen] = useState(false);
   const toggleMenu = () => setIsOpen(!isOpen);
+    const closeMenu=()=>setIsOpen(false);
 
   return (
     <>
-      {/* HEADER */}
+      
       <header className="header-wrapper">
         {/* Mobile Hamburger Icon */}
         <div className="menu-icon" onClick={toggleMenu}>
@@ -35,15 +36,15 @@ function Register() {
 
           {/* NAVIGATION */}
           <nav className="navs2">
-            <Link to="#">Home</Link>
-            <Link to="#">About</Link>
-            <Link to="#">Contact Us</Link>
+            <Link to="/">Home</Link>
+            <a href="#about" onClick={closeMenu}>About</a>
+          <a href="#contact" onClick={closeMenu}>Contact Us</a>
           </nav>
 
           {/* BUTTONS */}
           <div className="auth-btns2">
-            <button className="login">Login</button>
-            <button className="signup">Sign up</button>
+            <button className="login"><Link to="/login">Login</Link></button>
+            <button className="signup"><Link to="/register">Sign up</Link></button>
           </div>
         </div>
       </header>

@@ -1,77 +1,53 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
-import { useState } from 'react'
+import React, { useState } from "react";
+import { Link } from "react-router-dom";
 
 function Header() {
+  const [isOpen, setIsOpen] = useState(false);
 
-    const [isOpen, setIsOpen]=useState(false)
-    const  toggleMenu=()=>setIsopen(!isOpen)
+  const toggleMenu = () => setIsOpen(!isOpen);
+  const closeMenu = () => setIsOpen(false);
 
- return (
-    <>
-    <header className="responsive-header">
-        {!isOpen &&(
-            <div className="humberger">
-                 <span className="span">☰</span>
-                  <hr/>
-            </div>
-           
-        )}
-        <nav className="close">
-          {isOpen &&(
-            <div className="close-icon" onClick={toggleMenu}>
-                 ✖
-            </div>
-          )}
-         </nav> 
-         <div className="header2">
-        
-        <div className="weru">
-            <div clasName="w">
-                <button className="w-button">W</button>
-            </div>
-            <div className="werus">
-                 <h3>WERU HOSTELS</h3>
-            <p>A LITTLE MORE AT HOME </p>
-            </div>
-           
+  return (
+    <header className="header-wrapper">
+      <div className={`header2 ${isOpen ? "open" : ""}`}>
+        {/* Logo */}
+        <div className="weru2">
+          <button className="w-button2">W</button>
+          <div className="werus2">
+            <h3>WERU HOSTELS</h3>
+            <p>A LITTLE MORE CLASS HOME</p>
+          </div>
         </div>
-        <div className="navs">
-            <Link to="#">Home</Link>
-            <Link to="#">About</Link>
-            <Link to="#">Contact Us</Link>
-        </div>
-        <div className="auth-btns">
-            <button className="login">Login</button>
-             <button className="signup">Sign up</button>
-        </div>
-  </div>  
 
-     </header>
-    <div className="header">
-        
-        <div className="weru">
-            <div clasName="w">
-                <button className="w-button">W</button>
-            </div>
-            <div className="werus">
-                 <h3>WERU HOSTELS</h3>
-            <p>A LITTLE MORE AT HOME </p>
-            </div>
-           
+        {/* Close button (mobile only) */}
+        <div className="close-icon" onClick={closeMenu}>
+          ✖
         </div>
-        <div className="navs">
-            <Link to="#">Home</Link>
-            <Link to="#">About</Link>
-            <Link to="#">Contact Us</Link>
+
+        {/* Navigation */}
+        <nav className="navs2">
+          <Link to="/" onClick={closeMenu}>Home</Link>
+          <a href="#about" onClick={closeMenu}>About</a>
+          <a href="#contact" onClick={closeMenu}>Contact Us</a>
+        </nav>
+
+        {/* Auth buttons */}
+        <div className="auth-btns2">
+          <Link to="/login" className="login" onClick={closeMenu}>
+            Login
+          </Link>
+          <Link to="/register" className="signup" onClick={closeMenu}>
+            Sign up
+          </Link>
         </div>
-        <div className="auth-btns">
-            <button className="login"><Link to="/login">Login</Link></button>
-             <button className="signup"><Link to="/register">Sign up</Link></button>
-        </div>
-  </div>  
-    </>
-  )
+      </div>
+
+      {/* Hamburger button (mobile only) */}
+      <div className="menu-icon" onClick={toggleMenu}>
+        ☰
+      </div>
+    </header>
+  );
 }
 
-export default Header
+export default Header;

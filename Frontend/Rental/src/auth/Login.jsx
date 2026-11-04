@@ -5,6 +5,7 @@ import { ArrowRight } from 'lucide-react';
 function Login() {
   const [isOpen, setIsOpen] = useState(false);
   const toggleMenu = () => setIsOpen(!isOpen);
+  const closeMenu=()=>setIsOpen(false);
 
   return (
     <>
@@ -34,23 +35,23 @@ function Login() {
 
           {/* NAVIGATION */}
           <nav className="navs2">
-            <Link to="#">Home</Link>
-            <Link to="#">About</Link>
-            <Link to="#">Contact Us</Link>
+            <Link to="/">Home</Link>
+             <a href="#about" onClick={closeMenu}>About</a>
+            <a href="#contact" onClick={closeMenu}>Contact Us</a>
           </nav>
 
           {/* BUTTONS */}
           <div className="auth-btns2">
-            <button className="login">Login</button>
-            <button className="signup">Sign up</button>
+            <button className="login"><Link to="/login">Login</Link></button>
+            <button className="signup"><Link to="/register">Sign up</Link></button>
           </div>
         </div>
       </header>
 
-      {/* MAIN LOGIN PAGE CONTENT */}
+   
       <main className="login-page-container">
         
-        {/* Title Section */}
+       
         <div className="resident-access">
           <p>—— Resident Access</p>
           <h3>Good to have you here.</h3>
@@ -82,7 +83,7 @@ function Login() {
 
           
               <button type="submit" className="login-btn">
-                Login <ArrowRight size={18} />
+               <Link to="/login">Login</Link>  <ArrowRight size={18} />
               </button>
 
               <span className="register-link">
