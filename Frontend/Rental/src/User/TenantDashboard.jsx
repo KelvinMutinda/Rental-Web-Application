@@ -1,11 +1,39 @@
 import React from "react";
+import{useState} from "react";
+import {Link} from "react-router-dom";
 
 
 function TenantDashboard() {
+
+const [isOpen, setIsOpen]=useState(false);
+const toggleMenu=()=>setIsOpen(!isOpen)
+const closeMenu=()=>setIsOpen(false)
   return (
+  <>
+    <div className="headers">
+       <div className={`head2 ${isOpen? "open":" "}`}>
+         <div className="weru2">
+          <button className="w-button2">W</button>
+          <div className="werus2">
+            <h3>WERU HOSTELS</h3>
+            <p>A LITTLE MORE CLASS HOME</p>
+          </div>
+        </div>
+        <div className="close-icon" onClick={closeMenu}>
+            ✖
+        </div>
+         <nav className="navs2">
+                  <Link to="/" onClick={closeMenu}>Home</Link>
+                  <a href="#about" onClick={closeMenu}>About</a>
+                  <a href="#contact" onClick={closeMenu}>Contact Us</a>
+          </nav>
+       </div>
+       <div className="menu-icon" onClick={toggleMenu}>
+         ☰
+       </div>
+
+    </div>
     <div className="dashboard">
-     
-     
 
       <main className="main">
      
@@ -170,6 +198,7 @@ function TenantDashboard() {
         </div>
       </footer>
     </div>
+    </>
   );
 }
 

@@ -10,6 +10,11 @@ const registerSchema=new mongoose.Schema({
     regno:{type:String,required:true},
     course:{type:String,required:true},
     password:{type:String,required:true},
+    role:{
+        type:String,
+        enum:['admin, tenant'],
+        default:'tenant'
+    }
     
 
 },
