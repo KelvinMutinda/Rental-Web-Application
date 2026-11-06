@@ -1500,6 +1500,97 @@ body {
   text-decoration: none;
   color:white;
 }
+.headers{
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 70px;
+  padding: 0 20px;
+  color: white;
+  background-color: #0d211c;
+}
+.headers *, .headers *::before, .headers *::after { box-sizing: border-box; }
+
+.head2{
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+}
+
+.menu-icon, .close-icon{
+  display: none;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 10px;
+  color: #fff;
+  font-size: 1.7rem;
+  line-height: 1;
+  cursor: pointer;
+  user-select: none;
+}
+
+/* ── brand ── */
+.weru2 { display: flex; align-items: center; gap: 14px; }
+.w-button2 {
+  width: 56px; height: 40px; padding: 0;
+  background: transparent; color: #fff;
+  border: 1px solid rgba(255, 255, 255, 0.75);
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 1.5rem; cursor: pointer;
+}
+.werus2 h3 { margin: 0; font-size: 1.1rem; font-weight: 700; letter-spacing: 0.8px; color: #fff; line-height: 1.15; }
+.werus2 p  { margin: 3px 0 0; font-size: 0.62rem; letter-spacing: 2.4px; color: rgba(255, 255, 255, 0.6); }
+
+/* ── links ── */
+.navs2 { display: flex; align-items: center; gap: 32px; }
+.navs2 a { color: rgba(255, 255, 255, 0.92); text-decoration: none; font-size: 0.95rem; font-weight: 500; transition: color 0.15s; }
+.navs2 a:hover { color: #db9e4f; }
+
+@media screen and (max-width: 784px){
+  .headers{ min-height: 72px; padding: 0 18px; }   /* stays a row: logo left, ☰ right */
+  .menu-icon{ display: inline-flex; }
+
+  .navs2{
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;                       /* full-height drawer */
+    z-index: 1002;
+    width: min(300px, 82vw);
+    padding: 90px 26px 30px;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 6px;
+    background: #0d211c;             /* without this the links float over the page */
+    box-shadow: -20px 0 60px rgba(0, 0, 0, 0.35);
+    transform: translateX(105%);
+    visibility: hidden;
+    transition: transform .28s ease, visibility .28s;
+  }
+  .head2 .close-icon { display: none; }
+ 
+  .navs2 a{ padding: 13px 14px; border-radius: 10px; font-size: 1.02rem; }
+  .navs2 a:hover{ background: rgba(255, 255, 255, 0.07); }
+
+  .head2.open .navs2{ transform: translateX(0); visibility: visible; }
+  .head2.open::before{
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: 1001;
+    background: rgba(5, 16, 13, 0.55);
+  }
+  .close-icon{ position: fixed; top: 16px; right: 18px; z-index: 1003; }
+  .head2.open .close-icon{ display: inline-flex; }
+}
+
 /* ════════════════════════════════════════════════════════════════
    WERU HOSTELS — ADMIN DASHBOARD  (plain CSS, no Tailwind)
    Every class is prefixed "hh-" so it never clashes with global CSS.
@@ -1810,7 +1901,7 @@ body {
 .hh-chips button:hover { border-color: var(--hh-sand); }
 .hh-chips button.on { background: var(--hh-green); border-color: var(--hh-green); color: #fff; }
 
-/* ───────────── Lists: applications, tickets, notices, staff ───────────── */
+
 .hh-app-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 16px; }
 .hh-app { border: 1px solid var(--hh-line); border-radius: 12px; padding: 18px; background: var(--hh-paper); display: flex; flex-direction: column; gap: 14px; }
 .hh-app-top { display: flex; align-items: center; gap: 12px; }

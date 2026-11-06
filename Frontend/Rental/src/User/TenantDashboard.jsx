@@ -193,7 +193,7 @@ const closeMenu=()=>setIsOpen(false)
       
       <footer className="site-footer">
         <div className="site-footer-inner">
-          <span>Haven House Student Living</span>
+          <span>Weru Hostels</span>
           <span>A welcoming place to call home.</span>
         </div>
       </footer>
