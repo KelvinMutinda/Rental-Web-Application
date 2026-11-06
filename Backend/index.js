@@ -11,7 +11,8 @@ const app=express()
 app.use(cors())
 app.use(express.json())
 
-
+app.use(express.json());
+app.use('/api', require('./routes/routes'));   
 const PORT=process.env.PORT
 const MONGO_URI=process.env.MONGO_URI
 

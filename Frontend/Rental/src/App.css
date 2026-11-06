@@ -1554,14 +1554,14 @@ body {
 .navs2 a:hover { color: #db9e4f; }
 
 @media screen and (max-width: 784px){
-  .headers{ min-height: 72px; padding: 0 18px; }   /* stays a row: logo left, ☰ right */
+  .headers{ min-height: 72px; padding: 0 18px; }  
   .menu-icon{ display: inline-flex; }
 
   .navs2{
     position: fixed;
     top: 0;
     right: 0;
-    bottom: 0;                       /* full-height drawer */
+    bottom: 0;                       
     z-index: 1002;
     width: min(300px, 82vw);
     padding: 90px 26px 30px;
@@ -1591,11 +1591,7 @@ body {
   .head2.open .close-icon{ display: inline-flex; }
 }
 
-/* ════════════════════════════════════════════════════════════════
-   WERU HOSTELS — ADMIN DASHBOARD  (plain CSS, no Tailwind)
-   Every class is prefixed "hh-" so it never clashes with global CSS.
-   Palette comes from the site header:  deep green #112b25 · cream #f4f1ea · sand #db9e4f
-   ════════════════════════════════════════════════════════════════ */
+
 
 .hh-dashboard {
   --hh-green: #112b25;
@@ -1722,6 +1718,10 @@ body {
   background: rgba(8, 22, 18, 0.55); backdrop-filter: blur(2px);
   opacity: 0; pointer-events: none; transition: opacity 0.25s;
 }
+/* add to your CSS (e.g. the file that styles .register-form) */
+.register-form .input-error { border-color: #c0392b !important; background: #fdf3f1; }
+.register-form .field-error { display: block; margin-top: 4px; font-size: 0.74rem; font-weight: 600; color: #c0392b; }
+.register-form .apply:disabled { opacity: .6; cursor: not-allowed; }
 .hh-scrim.open { opacity: 1; pointer-events: auto; }
 .hh-drawer {
   position: fixed; top: 0; right: 0; bottom: 0; z-index: 100;
