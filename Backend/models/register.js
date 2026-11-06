@@ -12,7 +12,7 @@ const registerSchema=new mongoose.Schema({
     password:{type:String,required:true},
     role:{
         type:String,
-        enum:['admin, tenant'],
+        enum:['admin', 'tenant'],
         default:'tenant'
     }
     
