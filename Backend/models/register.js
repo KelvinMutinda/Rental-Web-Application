@@ -11,8 +11,25 @@ const registerSchema = new mongoose.Schema({
   role:      { type: String, enum: ['admin', 'tenant'], default: 'tenant' },
 
 
+<<<<<<< HEAD
   roomType:    { type: String, enum: ['Single room', '2 Bedroom', 'Bedsitter'] },
   parentPhone: { type: String, trim: true },
+=======
+const registerSchema=new mongoose.Schema({
+    firstName:{type:String,required:true},
+    lastName:{type:String,required:true},
+    email:{type:String,required:true},
+    phoneno:{type:String,required:true},
+    regno:{type:String,required:true},
+    course:{type:String,required:true},
+    password:{type:String,required:true},
+    role:{
+        type:String,
+        enum:['admin', 'tenant'],
+        default:'tenant'
+    }
+    
+>>>>>>> eb26c5fc09e9050a855d98b3b2c79407f9eb4aaa
 
   status:     { type: String, enum: ['pending', 'approved', 'rejected'], default: 'pending' },
   roomNumber: { type: String, trim: true },   // set by admin on approval
