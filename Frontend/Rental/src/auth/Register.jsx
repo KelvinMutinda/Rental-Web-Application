@@ -10,11 +10,7 @@ const EMPTY = {
   course: '', roomType: '', parentPhone: '', password: '', cpassword: '',
 };
 
-<<<<<<< HEAD
 
-=======
-/* returns { field: "message" } – empty object means the form is valid */
->>>>>>> eb26c5fc09e9050a855d98b3b2c79407f9eb4aaa
 function validate(f) {
   const e = {};
   if (!f.firstName.trim()) e.firstName = 'Enter your first name';
@@ -29,7 +25,6 @@ function validate(f) {
   if (f.cpassword !== f.password) e.cpassword = 'Passwords do not match';
   return e;
 }
-<<<<<<< HEAD
 
 function Field({ label, name, type = 'text', placeholder, value, error, onChange }) {
   return (
@@ -45,8 +40,6 @@ function Field({ label, name, type = 'text', placeholder, value, error, onChange
     </div>
   );
 }
-=======
->>>>>>> eb26c5fc09e9050a855d98b3b2c79407f9eb4aaa
 
 function Register() {
   const navigate = useNavigate();
@@ -61,11 +54,7 @@ function Register() {
   const handleChange = (e) => {
     const { name, value } = e.target;
     setForm((f) => ({ ...f, [name]: value }));
-<<<<<<< HEAD
     if (errors[name]) setErrors((er) => ({ ...er, [name]: '' }));   
-=======
-    if (errors[name]) setErrors((er) => ({ ...er, [name]: '' }));   // clear the message as they fix it
->>>>>>> eb26c5fc09e9050a855d98b3b2c79407f9eb4aaa
   };
 
   const handleSubmit = async (e) => {
@@ -104,23 +93,6 @@ function Register() {
       setLoading(false);
     }
   };
-<<<<<<< HEAD
-=======
-
-  /* small helper so every field renders the same way */
-  const Field = ({ label, name, type = 'text', placeholder }) => (
-    <div className="div-groups">
-      <label htmlFor={name}>{label}</label>
-      <input
-        id={name} name={name} type={type} placeholder={placeholder}
-        value={form[name]} onChange={handleChange}
-        className={errors[name] ? 'input-error' : ''}
-        aria-invalid={!!errors[name]}
-      />
-      {errors[name] && <small className="field-error">{errors[name]}</small>}
-    </div>
-  );
->>>>>>> eb26c5fc09e9050a855d98b3b2c79407f9eb4aaa
 
   return (
     <>
@@ -165,7 +137,6 @@ function Register() {
 
             <div className="personal">
               <div className="group">
-<<<<<<< HEAD
                 <Field label="First Name" name="firstName" placeholder="First Name" value={form.firstName} error={errors.firstName} onChange={handleChange} />
                 <Field label="Last Name" name="lastName" placeholder="Last Name" value={form.lastName} error={errors.lastName} onChange={handleChange} />
               </div>
@@ -176,18 +147,6 @@ function Register() {
               <div className="group">
                 <Field label="Reg No" name="regno" placeholder="e.g. SC/2023/0418" value={form.regno} error={errors.regno} onChange={handleChange} />
                 <Field label="Course" name="course" placeholder="Course" value={form.course} error={errors.course} onChange={handleChange} />
-=======
-                <Field label="First Name" name="firstName" placeholder="First Name" />
-                <Field label="Last Name" name="lastName" placeholder="Last Name" />
-              </div>
-              <div className="group">
-                <Field label="Email" name="email" type="email" placeholder="you@example.com" />
-                <Field label="Phone Number" name="phoneno" type="tel" placeholder="0712 345 678" />
-              </div>
-              <div className="group">
-                <Field label="Reg No" name="regno" placeholder="e.g. SC/2023/0418" />
-                <Field label="Course" name="course" placeholder="Course" />
->>>>>>> eb26c5fc09e9050a855d98b3b2c79407f9eb4aaa
               </div>
               <div className="group">
                 <div className="div-groups">
@@ -203,11 +162,7 @@ function Register() {
                   </select>
                   {errors.roomType && <small className="field-error">{errors.roomType}</small>}
                 </div>
-<<<<<<< HEAD
                 <Field label="Parent/Guardian Contact" name="parentPhone" type="tel" placeholder="Parent phone" value={form.parentPhone} error={errors.parentPhone} onChange={handleChange} />
-=======
-                <Field label="Parent/Guardian Contact" name="parentPhone" type="tel" placeholder="Parent phone" />
->>>>>>> eb26c5fc09e9050a855d98b3b2c79407f9eb4aaa
               </div>
             </div>
 
@@ -220,13 +175,8 @@ function Register() {
             <p>02 Create a Secure Password</p>
             <div className="password">
               <div className="group">
-<<<<<<< HEAD
                 <Field label="Password" name="password" type="password" placeholder="Enter password" value={form.password} error={errors.password} onChange={handleChange} />
                 <Field label="Confirm password" name="cpassword" type="password" placeholder="Confirm password" value={form.cpassword} error={errors.cpassword} onChange={handleChange} />
-=======
-                <Field label="Password" name="password" type="password" placeholder="Enter password" />
-                <Field label="Confirm password" name="cpassword" type="password" placeholder="Confirm password" />
->>>>>>> eb26c5fc09e9050a855d98b3b2c79407f9eb4aaa
               </div>
             </div>
 
