@@ -10,7 +10,7 @@ const EMPTY = {
   course: '', roomType: '', parentPhone: '', password: '', cpassword: '',
 };
 
-/* returns { field: "message" } – empty object means the form is valid */
+
 function validate(f) {
   const e = {};
   if (!f.firstName.trim()) e.firstName = 'Enter your first name';
@@ -24,6 +24,20 @@ function validate(f) {
   if (f.password.length < 6) e.password = 'Use at least 6 characters';
   if (f.cpassword !== f.password) e.cpassword = 'Passwords do not match';
   return e;
+}
+function Field({ label, name, type = 'text', placeholder, value, error, onChange }) {
+  return (
+    <div className="div-groups">
+      <label htmlFor={name}>{label}</label>
+      <input
+        id={name} name={name} type={type} placeholder={placeholder}
+        value={value} onChange={onChange}
+        className={error ? 'input-error' : ''}
+        aria-invalid={!!error}
+      />
+      {error && <small className="field-error">{error}</small>}
+    </div>
+  );
 }
 
 function Register() {
@@ -39,7 +53,7 @@ function Register() {
   const handleChange = (e) => {
     const { name, value } = e.target;
     setForm((f) => ({ ...f, [name]: value }));
-    if (errors[name]) setErrors((er) => ({ ...er, [name]: '' }));   // clear the message as they fix it
+    if (errors[name]) setErrors((er) => ({ ...er, [name]: '' }));   
   };
 
   const handleSubmit = async (e) => {
@@ -191,3 +205,4 @@ function Register() {
 }
 
 export default Register;
+

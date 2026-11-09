@@ -10,6 +10,10 @@ const app=express()
 
 app.use(cors())
 app.use(express.json())
+app.use('/api', require('./routes/routes'));
+app.use('/api/tenant', require('./routes/tenant'));
+app.use('/api/admin', require('./routes/admin'));
+app.use('/api/mpesa', require('./routes/mpesa'));
 
 app.use(express.json());
 app.use('/api', require('./routes/routes'));   
