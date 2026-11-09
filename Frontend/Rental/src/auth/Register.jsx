@@ -25,6 +25,7 @@ function validate(f) {
   if (f.cpassword !== f.password) e.cpassword = 'Passwords do not match';
   return e;
 }
+
 function Field({ label, name, type = 'text', placeholder, value, error, onChange }) {
   return (
     <div className="div-groups">
@@ -93,20 +94,6 @@ function Register() {
     }
   };
 
-  /* small helper so every field renders the same way */
-  const Field = ({ label, name, type = 'text', placeholder }) => (
-    <div className="div-groups">
-      <label htmlFor={name}>{label}</label>
-      <input
-        id={name} name={name} type={type} placeholder={placeholder}
-        value={form[name]} onChange={handleChange}
-        className={errors[name] ? 'input-error' : ''}
-        aria-invalid={!!errors[name]}
-      />
-      {errors[name] && <small className="field-error">{errors[name]}</small>}
-    </div>
-  );
-
   return (
     <>
       <header className="header-wrapper">
@@ -150,16 +137,16 @@ function Register() {
 
             <div className="personal">
               <div className="group">
-                <Field label="First Name" name="firstName" placeholder="First Name" />
-                <Field label="Last Name" name="lastName" placeholder="Last Name" />
+                <Field label="First Name" name="firstName" placeholder="First Name" value={form.firstName} error={errors.firstName} onChange={handleChange} />
+                <Field label="Last Name" name="lastName" placeholder="Last Name" value={form.lastName} error={errors.lastName} onChange={handleChange} />
               </div>
               <div className="group">
-                <Field label="Email" name="email" type="email" placeholder="you@example.com" />
-                <Field label="Phone Number" name="phoneno" type="tel" placeholder="0712 345 678" />
+                <Field label="Email" name="email" type="email" placeholder="you@example.com" value={form.email} error={errors.email} onChange={handleChange} />
+                <Field label="Phone Number" name="phoneno" type="tel" placeholder="0712 345 678" value={form.phoneno} error={errors.phoneno} onChange={handleChange} />
               </div>
               <div className="group">
-                <Field label="Reg No" name="regno" placeholder="e.g. SC/2023/0418" />
-                <Field label="Course" name="course" placeholder="Course" />
+                <Field label="Reg No" name="regno" placeholder="e.g. SC/2023/0418" value={form.regno} error={errors.regno} onChange={handleChange} />
+                <Field label="Course" name="course" placeholder="Course" value={form.course} error={errors.course} onChange={handleChange} />
               </div>
               <div className="group">
                 <div className="div-groups">
@@ -175,7 +162,7 @@ function Register() {
                   </select>
                   {errors.roomType && <small className="field-error">{errors.roomType}</small>}
                 </div>
-                <Field label="Parent/Guardian Contact" name="parentPhone" type="tel" placeholder="Parent phone" />
+                <Field label="Parent/Guardian Contact" name="parentPhone" type="tel" placeholder="Parent phone" value={form.parentPhone} error={errors.parentPhone} onChange={handleChange} />
               </div>
             </div>
 
@@ -188,8 +175,8 @@ function Register() {
             <p>02 Create a Secure Password</p>
             <div className="password">
               <div className="group">
-                <Field label="Password" name="password" type="password" placeholder="Enter password" />
-                <Field label="Confirm password" name="cpassword" type="password" placeholder="Confirm password" />
+                <Field label="Password" name="password" type="password" placeholder="Enter password" value={form.password} error={errors.password} onChange={handleChange} />
+                <Field label="Confirm password" name="cpassword" type="password" placeholder="Confirm password" value={form.cpassword} error={errors.cpassword} onChange={handleChange} />
               </div>
             </div>
 
@@ -205,4 +192,3 @@ function Register() {
 }
 
 export default Register;
-
