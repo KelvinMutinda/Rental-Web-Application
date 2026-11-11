@@ -20,10 +20,13 @@ router.post('/register', async (req, res) => {
 
     const hashed = await bcrypt.hash(password, 10);
 
-
     const user = await Register.create({
       firstName, lastName, email, phoneno, regno, course, password: hashed,
     });
+
+    // Tell any open admin dashboards there is a new application
+    const notifyAdmins = req.app.get('notifyAdmins');
+    if (notifyAdmins) notifyAdmins('applications:changed', { type: 'created', id: user._id });
 
     res.status(201).json({
       message: 'Registered successfully',

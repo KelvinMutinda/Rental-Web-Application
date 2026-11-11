@@ -1,3 +1,235 @@
+/* src/User/TenantDashboard.css
+   Styles for the pieces the tenant dashboard adds: status cards, room chips,
+   payment pop-up, payment history. Colours follow the dark green header. */
+
+:root {
+  --td-green: #0d1f1a;
+  --td-mpesa: #1f9d55;
+  --td-mpesa-dark: #17804a;
+  --td-line: #e2ddd2;
+  --td-muted: #6b6559;
+}
+
+/* ---------- application status cards ---------- */
+.status-card {
+  background: #fff;
+  border: 1px solid var(--td-line);
+  border-left: 5px solid #c9a227;
+  border-radius: 12px;
+  padding: 20px 24px;
+  margin: 20px 0;
+}
+.status-card h3 {
+  margin: 8px 0 6px;
+  font-size: 18px;
+}
+.status-card p {
+  margin: 0;
+  color: var(--td-muted);
+  line-height: 1.55;
+  max-width: 62ch;
+}
+.status-card.status-pending {
+  border-left-color: #c9a227;
+  background: #fffaf0;
+}
+.status-card.status-error {
+  border-left-color: #b3392f;
+  background: #fff5f4;
+}
+.status-badge {
+  display: inline-block;
+  font-size: 12px;
+  font-weight: 600;
+  padding: 3px 10px;
+  border-radius: 999px;
+  background: #f4e7b8;
+  color: #6d5600;
+}
+.status-card.status-error .status-badge {
+  background: #f6d4d0;
+  color: #8a2c2c;
+}
+.status-card .btn-payment {
+  margin-top: 14px;
+}
+
+/* ---------- room details once approved ---------- */
+.room-line {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 4px 0 18px;
+}
+.chip {
+  font-size: 13px;
+  padding: 5px 12px;
+  border-radius: 999px;
+  background: #f1ede4;
+  color: #3a362e;
+}
+.chip-room {
+  background: var(--td-green);
+  color: #fff;
+}
+
+/* ---------- pay button ---------- */
+.btn-payment.btn-mpesa:not(:disabled) {
+  background: var(--td-mpesa);
+  color: #fff;
+}
+.btn-payment.btn-mpesa:not(:disabled):hover {
+  background: var(--td-mpesa-dark);
+}
+.btn-payment:disabled {
+  opacity: 0.65;
+  cursor: not-allowed;
+}
+
+/* ---------- payment pop-up ---------- */
+.pay-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(13, 31, 26, 0.55);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+  z-index: 100;
+}
+.pay-modal {
+  background: #fff;
+  width: 100%;
+  max-width: 420px;
+  border-radius: 14px;
+  padding: 24px;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.25);
+}
+.pay-head {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 6px;
+}
+.pay-head h3 {
+  margin: 0;
+  font-size: 20px;
+}
+.mpesa-mark {
+  background: var(--td-mpesa);
+  color: #fff;
+  font-weight: 700;
+  font-size: 12px;
+  letter-spacing: 0.06em;
+  padding: 5px 10px;
+  border-radius: 6px;
+}
+.pay-sub {
+  margin: 0 0 16px;
+  color: var(--td-muted);
+  font-size: 14px;
+  line-height: 1.5;
+}
+.pay-sub b {
+  color: #1a1a1a;
+}
+.pay-modal label {
+  display: block;
+  font-size: 13px;
+  font-weight: 600;
+  margin: 14px 0 6px;
+}
+.pay-modal input {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 11px 12px;
+  font-size: 16px; /* stops iOS zooming in */
+  border: 1px solid #d6d1c6;
+  border-radius: 8px;
+}
+.pay-modal input:focus {
+  outline: 2px solid var(--td-mpesa);
+  outline-offset: 1px;
+  border-color: var(--td-mpesa);
+}
+.quick-amounts {
+  display: flex;
+  gap: 8px;
+  margin-top: 8px;
+}
+.quick-amounts button {
+  background: #f1ede4;
+  border: none;
+  border-radius: 999px;
+  padding: 5px 12px;
+  font-size: 13px;
+  cursor: pointer;
+}
+.quick-amounts button:hover {
+  background: #e6e0d2;
+}
+.pay-hint {
+  font-size: 13px;
+  color: var(--td-muted);
+  margin: 14px 0 0;
+}
+.pay-actions {
+  display: flex;
+  gap: 10px;
+  margin-top: 20px;
+}
+.pay-actions button {
+  flex: 1;
+  padding: 12px;
+  border-radius: 8px;
+  font-size: 15px;
+  cursor: pointer;
+  border: 1px solid transparent;
+}
+.pay-cancel {
+  background: #fff;
+  border-color: #d6d1c6 !important;
+  color: #1a1a1a;
+}
+.pay-go {
+  background: var(--td-mpesa);
+  color: #fff;
+  font-weight: 600;
+}
+.pay-go:hover:not(:disabled) {
+  background: var(--td-mpesa-dark);
+}
+.pay-actions button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* ---------- payment history ---------- */
+.history-scroll {
+  overflow-x: auto;
+}
+.history-empty {
+  color: var(--td-muted);
+  padding: 20px 0 4px;
+}
+.status.status-confirmed {
+  background: #e3f1e6;
+  color: #1f6b35;
+}
+.status.status-pending {
+  background: #fbf0cf;
+  color: #7a5b00;
+}
+.status.status-failed {
+  background: #f6d9d6;
+  color: #8a2c2c;
+}
+
+@media (max-width: 480px) {
+  .pay-modal {
+    padding: 20px 16px;
+  }
+}
 body{
   overflow-x: hidden;
 }

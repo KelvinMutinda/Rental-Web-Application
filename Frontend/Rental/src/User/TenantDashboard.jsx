@@ -2,6 +2,7 @@ import React, { useCallback, useEffect, useRef, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
 
+
 const API_URL = import.meta.env.VITE_API_URL || "http://localhost:5000/api";
 
 const fmt = (n) => "KES " + Number(n || 0).toLocaleString("en-KE");
@@ -187,7 +188,7 @@ function TenantDashboard() {
               </p>
 
               {/* ── not approved yet: NO rental data is shown ── */}
-              {user.status === "pending" && (
+              {user.status !== "approved" && user.status !== "rejected" && (
                 <div className="status-card status-pending">
                   <span className="status-badge">Pending approval</span>
                   <h3>Your application is being reviewed</h3>
@@ -223,6 +224,14 @@ function TenantDashboard() {
                   )}
                 </div>
 
+                {approved && (
+                  <div className="room-line">
+                    <span className="chip chip-room">Room {rental.roomNumber}</span>
+                    <span className="chip">{rental.roomType} room</span>
+                    <span className="chip">{fmt(rental.rent)} per month</span>
+                  </div>
+                )}
+
                 <div className="info-row">
                   <div className="info-item">
                     <div className="info-label">Phone</div>
@@ -238,7 +247,7 @@ function TenantDashboard() {
                   </div>
                   <div className="info-item">
                     <div className="info-label">{approved ? "Room type" : "Room requested"}</div>
-                    <div className="info-value">{user.roomType || "—"}</div>
+                    <div className="info-value">{(approved && rental.roomType) || user.roomType || "—"}</div>
                   </div>
                 </div>
               </div>
@@ -263,7 +272,7 @@ function TenantDashboard() {
                         <div className="rent-due">Due {fmtDate(rental.dueDate)}</div>
                       </div>
 
-                      <button className="btn-payment" onClick={openPay} disabled={rental.balance <= 0}>
+                      <button className="btn-payment btn-mpesa" onClick={openPay} disabled={rental.balance <= 0}>
                         {rental.balance <= 0 ? "Rent cleared ✓" : "Pay with M-Pesa"}
                         {rental.balance > 0 && <span>→</span>}
                       </button>
@@ -337,12 +346,25 @@ function TenantDashboard() {
       {payOpen && approved && (
         <div className="pay-overlay" onMouseDown={(e) => e.target === e.currentTarget && !paying && setPayOpen(false)}>
           <form className="pay-modal" onSubmit={submitPay} role="dialog" aria-modal="true" aria-label="Pay rent with M-Pesa">
-            <h3>Pay rent with M-Pesa</h3>
-            <p className="pay-sub">Balance for {monthName(rental.month)}: <b>{fmt(rental.balance)}</b></p>
+            <div className="pay-head">
+              <span className="mpesa-mark">M-PESA</span>
+              <h3>Pay rent</h3>
+            </div>
+            <p className="pay-sub">
+              Room {rental.roomNumber} · {rental.roomType} · {monthName(rental.month)}
+              <br />
+              Balance: <b>{fmt(rental.balance)}</b>
+            </p>
 
             <label htmlFor="pay-amount">Amount (KES)</label>
             <input id="pay-amount" type="number" min="1" max={rental.balance} value={amount}
                    onChange={(e) => setAmount(e.target.value)} required />
+            <div className="quick-amounts">
+              <button type="button" onClick={() => setAmount(String(rental.balance))}>Full balance</button>
+              {rental.balance >= 2 && (
+                <button type="button" onClick={() => setAmount(String(Math.ceil(rental.balance / 2)))}>Half</button>
+              )}
+            </div>
 
             <label htmlFor="pay-phone">M-Pesa phone number</label>
             <input id="pay-phone" type="tel" placeholder="0712 345 678" value={phone}
@@ -352,7 +374,9 @@ function TenantDashboard() {
 
             <div className="pay-actions">
               <button type="button" className="pay-cancel" onClick={() => setPayOpen(false)} disabled={paying}>Cancel</button>
-              <button type="submit" className="pay-go" disabled={paying}>{paying ? "Sending…" : "Send prompt"}</button>
+              <button type="submit" className="pay-go" disabled={paying}>
+                {paying ? "Sending…" : `Pay ${fmt(amount)}`}
+              </button>
             </div>
           </form>
         </div>

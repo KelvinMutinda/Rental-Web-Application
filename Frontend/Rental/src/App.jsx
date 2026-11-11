@@ -6,6 +6,7 @@ import { Routes, Route } from 'react-router-dom'
 import TenantDashboard from './User/TenantDashboard'
 import AdminDashboard from './Admin/AdminDashboard'
 import AppToaster from './AppToaster'
+import ProtectedRoute from './ProtectedRoute'
 
 function App() {
   return (
@@ -15,8 +16,14 @@ function App() {
         <Route path="/" element={<HomePage />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
-        <Route path="/TenantDashboard" element={<TenantDashboard />} />
-        <Route path="/AdminDashboard" element={<AdminDashboard />} />
+        <Route
+          path="/AdminDashboard"
+          element={<ProtectedRoute role="admin"><AdminDashboard /></ProtectedRoute>}
+        />
+        <Route
+          path="/TenantDashboard"
+          element={<ProtectedRoute role="tenant"><TenantDashboard /></ProtectedRoute>}
+        />
       </Routes>
     </>
   )
