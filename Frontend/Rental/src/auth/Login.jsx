@@ -49,11 +49,6 @@ function Login() {
         return;
       }
 
-<<<<<<< HEAD
-  
-=======
-      // keep the session so the dashboards (and later API calls) can use it
->>>>>>> eb26c5fc09e9050a855d98b3b2c79407f9eb4aaa
       localStorage.setItem('token', data.token);
       localStorage.setItem('user', JSON.stringify(data.user));
 
@@ -125,11 +120,6 @@ function Login() {
                 {errors.password && <small className="field-error">{errors.password}</small>}
               </div>
 
-<<<<<<< HEAD
-            
-=======
-              {/* the old <Link to="/login"> inside this button sent users back to the login page – removed */}
->>>>>>> eb26c5fc09e9050a855d98b3b2c79407f9eb4aaa
               <button type="submit" className="login-btn" disabled={loading}>
                 {loading ? 'Please wait…' : 'Login'} <ArrowRight size={18} />
               </button>
