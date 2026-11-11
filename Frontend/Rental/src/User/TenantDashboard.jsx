@@ -3,7 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
 
 
-const API_URL = import.meta.env.VITE_API_URL || "http://localhost:5000/api";
+const API_URL = import.meta.env.VITE_API_URL || "https://rental-web-application-2.onrender.com/api";
 
 const fmt = (n) => "KES " + Number(n || 0).toLocaleString("en-KE");
 const fmtDate = (d) =>

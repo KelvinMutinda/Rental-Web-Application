@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import { io } from "socket.io-client";
 
 
-const API_URL = import.meta.env.VITE_API_URL || "http://localhost:5000/api";
+const API_URL = import.meta.env.VITE_API_URL || "https://rental-web-application-2.onrender.com/api";
 const SOCKET_URL = API_URL.replace(/\/api\/?$/, ""); // sockets live at the server root
 const ROOM_TYPES = ["Single", "Double", "Bedsitter"];
 const kes = (n) => `KES ${Number(n || 0).toLocaleString()}`;
